@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+   <head>
+      <title>css-preview</title>
+      <meta name="title" content="css-preview">
+      <meta name="description" content="Preview your css live">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="css-preview">
+      <meta property="og:description" content="Preview your css live">
+      <meta property="twitter:card" content="summary_large_image">
+      <meta property="twitter:title" content="css-preview">
+      <meta property="twitter:description" content="Preview your css live">
+      <style id="style"></style>
+      <style>.CodeMirror {
+         margin: 0 auto;
+         border: 4px solid #3a3a3a;
+         font-size: 15px;
+         font-family: 'Viga', sans-serif;
+         border-radius: 1px;
+         line-height: 1.2em;
+         height: 3.6em;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>
+         css-preview
+      </h1>
+      <p>Preview your CSS on this stupid webpage with too many elements to make sure your CSS works with all major elements. We got you started with some fresh CSS, feel free to modify however you like, or replace it with your own. Use the copy button to copy your work when done.</p>
+      <textarea id="css" style="width:100%;height:300px;"></textarea>
+      <br />
+      <input id="copyinput" style="display: none;" type="text" value=""/>
+      <button id="copybtn">Copy</button>
+      <br /> 
+      <h2>Some long text</h2>
+      <p>Lorem ipsum is actually stupid. It's being used for placeholders on all templates, and what does it even mean? It's super overused, and we need something new, and better. Oh, I just made a better version, this right here!</p>
+      <br /> <br />
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+      <b>Some bold text</b>
+      <p>Some paragraph</p>
+      <li>Some bullet text</li>
+      <br /><br />
+      <h1>A button</h1>
+      Hey, look, it's a button
+      <br /><br/><button>Heyo, what's up?</button>
+      <br /><br />
+      <h1>Javascript is amazing</h1>
+      <p>There's so much you can do with JavaScript! With it, anything can go on a webpage, and you can even use it serverside using Node.js. It powers all types of webpages, like this exact one!</p>
+      <br /><br />
+      <h1>An image</h1>
+      <img src="https://media.discordapp.net/attachments/780870393644580925/806593609150234624/unknown.png?width=634&height=117" />
+      <br /> <br />
+      <h1>Some cool codeblock</h1>
+      <pre><code>console.log('hello world')</code></pre>
+      <br />
+      <h1>Not a codeblock but still code</h1>
+      <code>console.log('heyy!')</code>
+      <br /><br />
+      <h1>Oh wow, and a form!</h1>
+      <h3>Some textarea</h3>
+      <textarea placeholder="Heyo, I'm a textarea!"></textarea>
+      <br />
+      <h3>Some text input</h3>
+      <input placeholder="123456789012345678"></input>
+      <br />
+      <h3>Some readonly input</h3>
+      <input readonly value="Cheese is the best"></input>
+      <br /><br />
+      <label>
+         <h3>Is this site cool?</h3>
+      </label>
+      <div> <input type="radio" id="john" name="drone" value="john" checked> <label for="john">Yes</label> </div>
+      <div> <input type="radio" id="jane" name="drone" value="jane" checked> <label for="jane">Yes</label> </div>
+      <div> <input type="radio" id="johnny" name="drone" value="johnny" checked> <label for="johnny">Yes</label> </div>
+      <br> <input type="checkbox" name="remember" id="remember" checked> <label for="remember">| <b>Remember me</b></label> </div> <br /><input type="submit"></input>
+      <br/><br/>
+      <h1>View css-preview on github</h1>
+      our GitHub repository can be found <a href="https://github.com/AR-Student824/css-preview">here</a>
+      <link rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+      </link>
+      <script type="text/javascript"
+         src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+      <link rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+      <script type="text/javascript"
+         src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/css/css.min.js"></script>
+      <script>
+         var textarea = document.getElementById('css')
+         var style = document.getElementById('style')
+         var editor = CodeMirror.fromTextArea(textarea, {
+            lineNumbers: true,
+         	styleActiveLine: true,
+                    lineNumbers: true,
+                    matchBrackets: true,
+          mode: "css",
+         theme: "monokai"
+          });
+         editor.getDoc().setValue(`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body {
+	margin-right: 100px;
+	margin-left: 100px;
+	font-family: Inter;
+	color: #eceff4;
+	background-color: #2e3440;
+}
+
+a {
+	color: #81a1c1;
+}
+
+button,
+input[type=submit] {
+	padding: 10px;
+	color: white;
+	cursor: pointer;
+}
+
+input,
+button,
+textarea {
+	background-color: #434c5e;
+	border: none;
+	border-radius: 3px;
+}
+
+textarea,
+input {
+	padding: 7px;
+	color: #eceff4;
+}
+
+textarea {
+	width: 50%;
+}`)
+         const inp = document.getElementById('copyinput')
+         style.innerHTML = editor.getValue()
+         inp.value = editor.getValue()
+         
+         editor.on('change', (i, obj) => {
+         	style.innerHTML = editor.getValue()
+         	inp.value = editor.getValue()
+         })
+         
+         const button = document.getElementById('copybtn')
+         button.onclick = function () {
+         	const code = inp;code.setAttribute("style", "display: initial;");code.select();document.execCommand("copy");code.setAttribute("style", "display: none;");button.innerHTML = 'Copied!';setTimeout(()=>{button.innerHTML='Copy'}, 750)
+         }
+         
+         
+      </script>
+   </body>
+</html>
+
